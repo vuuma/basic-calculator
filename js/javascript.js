@@ -14,3 +14,27 @@ function divide(firstInteger, secondInteger){
     return firstInteger / secondInteger;
 }
 
+
+// The operate function takes in an operand sign and two integers and parses it 
+// to the intended operation function (add, subtract, multiply, and divide).
+function operate(operator, firstInteger, secondInteger){
+    if(operator == "+"){
+        return add(firstInteger, secondInteger);
+    }
+
+    else if(operator == "-"){
+        return subtract(firstInteger, secondInteger);
+    }
+
+    else if(operator == "*"){
+        return multiply(firstInteger, secondInteger);
+    }
+
+    else if(operator == "/"){
+        return divide(firstInteger, secondInteger);
+    }
+
+    else{
+        return null;
+    } 
+}
