@@ -15,7 +15,7 @@ function divide(firstInteger, secondInteger){
 }
 
 
-// The operate function takes in an operand sign and two integers and parses it 
+// The operate function takes in an operator sign and two integers and parses it 
 // to the intended operation function (add, subtract, multiply, and divide).
 function operate(operator, firstInteger, secondInteger){
     if(operator == "+"){
