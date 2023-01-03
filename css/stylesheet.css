@@ -38,6 +38,13 @@
     font-weight: 500;
 }
 
+.buttons > button{
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+}
+
 .clear{
     grid-column: 1;
     grid-row: 1;
