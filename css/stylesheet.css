@@ -50,16 +50,6 @@
     grid-row: 1;
 }
 
-.percent{
-    grid-column: 1;
-    grid-row: 5;
-}
-
-.decimal{
-    grid-column: 3;
-    grid-row: 5;
-}
-
 .equals{
     grid-column: 4;
     grid-row: 5;
