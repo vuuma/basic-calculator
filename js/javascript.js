@@ -34,9 +34,21 @@ function operate(operator, firstInteger, secondInteger){
         return divide(firstInteger, secondInteger);
     }
 
-    else{
-        return null;
-    } 
+
+}
+
+function displayResult(){
+   
+    let firstInteger = Number(firstIntegerArray.join(''));
+    let secondInteger = Number(secondIntegerArray.join(''));
+    
+    result.textContent = '';
+    let calculateResult = operate(operator, parseInt(firstInteger), parseInt(secondInteger));
+    result.appendChild(document.createTextNode(`${calculateResult}`));
+    clearValues()
+    operation.textContent = '';
+    operation.appendChild(document.createTextNode(`${calculateResult}`));
+    firstIntegerArray.push(calculateResult);
 }
 
 function clearValues(){
@@ -59,6 +71,8 @@ const equalPattern = /=/;
 let operator = '';
 let firstIntegerArray = [];
 let secondIntegerArray = [];
+let firstInteger;
+let secondInteger;
 
 
 buttons.forEach((button) => {
@@ -77,22 +91,31 @@ buttons.forEach((button) => {
         }   
 
         else if(operatorPattern.test(button.textContent)){
+            
+            
+            if(firstIntegerArray.length == 0 && button.textContent == '-'){
+                firstIntegerArray.push(0);
+                operation.appendChild(document.createTextNode(0)); 
+            }
+            
+            else if(secondIntegerArray.length > 0 && (operation.textContent.includes('-') || operation.textContent.includes('+') || operation.textContent.includes('/') || operation.textContent.includes('x'))){
+            displayResult();
+            }
+
+            else{
+                firstInteger = Number(firstIntegerArray.join(''));
+                operation.textContent = '';
+                operation.appendChild(document.createTextNode(`${firstInteger}`));
+            }
+    
+
             operator = button.textContent;
             operation.appendChild(document.createTextNode(`${button.textContent}`)); 
         }
 
         else if(equalPattern.test(button.textContent)){
             // Converts the Array of numbers into a single integer. i.e. [1, 0, 9] becomes 109.
-            let firstInteger = Number(firstIntegerArray.join(''));
-            let secondInteger = Number(secondIntegerArray.join(''));
-          
-            result.textContent = '';
-            let calculateResult = operate(operator, parseInt(firstInteger), parseInt(secondInteger));
-            result.appendChild(document.createTextNode(`${calculateResult}`));
-            clearValues()
-            operation.textContent = '';
-            operation.appendChild(document.createTextNode(`${calculateResult}`));
-            firstIntegerArray.push(calculateResult);
+            displayResult()
         }
 
         // Clears the screen when the C (clear button) is pressed.
@@ -100,5 +123,6 @@ buttons.forEach((button) => {
             clearResults()
             clearValues()
         }
-    });
+    }
+    );
 });
