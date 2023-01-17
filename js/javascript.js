@@ -1,37 +1,37 @@
-function add(firstInteger, secondInteger){
-    return firstInteger + secondInteger;
+function add(firstNumber, secondNumber){
+    return firstNumber + secondNumber;
 }
 
-function subtract(firstInteger, secondInteger){
-    return firstInteger - secondInteger;
+function subtract(firstNumber, secondNumber){
+    return firstNumber - secondNumber;
 }
 
-function multiply(firstInteger, secondInteger){
-    return firstInteger * secondInteger;
+function multiply(firstNumber, secondNumber){
+    return firstNumber * secondNumber;
 }
 
-function divide(firstInteger, secondInteger){
-    return firstInteger / secondInteger;
+function divide(firstNumber, secondNumber){
+    return firstNumber / secondNumber;
 }
 
 
-// The operate function takes in an operator sign and two integers and parses it 
+// The operate function takes in an operator sign and two numbers and parses it 
 // to the intended operation function (add, subtract, multiply, and divide).
-function operate(operator, firstInteger, secondInteger){
+function operate(operator, firstNumber, secondNumber){
     if(operator == "+"){
-        return add(firstInteger, secondInteger);
+        return add(firstNumber, secondNumber);
     }
 
     else if(operator == "-"){
-        return subtract(firstInteger, secondInteger);
+        return subtract(firstNumber, secondNumber);
     }
 
     else if(operator == "x"){
-        return multiply(firstInteger, secondInteger);
+        return multiply(firstNumber, secondNumber);
     }
 
     else if(operator == "/"){
-        return divide(firstInteger, secondInteger);
+        return divide(firstNumber, secondNumber);
     }
 
 
@@ -39,58 +39,58 @@ function operate(operator, firstInteger, secondInteger){
 
 function displayResult(){
    
-    let firstInteger = Number(firstIntegerArray.join(''));
-    let secondInteger = Number(secondIntegerArray.join(''));
+    let firstNumber = Number(firstNumberArray.join(''));
+    let secondNumber = Number(secondNumberArray.join(''));
     
     result.textContent = '';
-    let calculateResult = operate(operator, parseFloat(firstInteger), parseFloat(secondInteger));
+    let calculateResult = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
     result.appendChild(document.createTextNode(`${calculateResult}`));
     clearValues()
     operation.textContent = '';
     operation.appendChild(document.createTextNode(`${calculateResult}`));
-    firstIntegerArray.push(calculateResult);
+    firstNumberArray.push(calculateResult);
 }
 
 function clearValues(){
-    firstIntegerArray.length = 0;
-    secondIntegerArray.length = 0;
-    firstInteger = null;
-    secondInteger = null;
+    firstNumberArray.length = 0;
+    secondNumberArray.length = 0;
+    firstNumber = null;
+    secondNumber = null;
 }
 
 function clearAllData(){
     operation.textContent = '';
     result.textContent = '';
-    firstIntegerArray.length = 0;
-    secondIntegerArray.length = 0;
+    firstNumberArray.length = 0;
+    secondNumberArray.length = 0;
     operator = '';
 }
 
 const buttons = document.querySelectorAll('button');
 const operation = document.querySelector('.operation');
 const result = document.querySelector('.result');
-const integerPattern = /^[0-9]$/;
+const numberPattern = /^[0-9]$/;
 const operatorPattern = /[+-/x]/;
 const clearPattern = /C/;
 const equalPattern = /=/;
 let operator = '';
-let firstIntegerArray = [];
-let secondIntegerArray = [];
-let firstInteger;
-let secondInteger;
+let firstNumberArray = [];
+let secondNumberArray = [];
+let firstNumber;
+let secondNumber;
 
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         
-        if(integerPattern.test(button.textContent)){
+        if(numberPattern.test(button.textContent)){
             if(operation.textContent.includes('-') || operation.textContent.includes('+') || operation.textContent.includes('/') || operation.textContent.includes('x')){
                 operation.appendChild(document.createTextNode(`${button.textContent}`));
-                secondIntegerArray.push(button.textContent);
+                secondNumberArray.push(button.textContent);
             }
 
             else{
-                firstIntegerArray.push(button.textContent);
+                firstNumberArray.push(button.textContent);
                 operation.appendChild(document.createTextNode(`${button.textContent}`));
             }
         }   
@@ -98,19 +98,19 @@ buttons.forEach((button) => {
         else if(operatorPattern.test(button.textContent)){
             
             
-            if(firstIntegerArray.length == 0 && button.textContent == '-'){
-                firstIntegerArray.push(0);
+            if(firstNumberArray.length == 0 && button.textContent == '-'){
+                firstNumberArray.push(0);
                 operation.appendChild(document.createTextNode(0)); 
             }
             
-            else if(secondIntegerArray.length > 0 && (operation.textContent.includes('-') || operation.textContent.includes('+') || operation.textContent.includes('/') || operation.textContent.includes('x'))){
+            else if(secondNumberArray.length > 0 && (operation.textContent.includes('-') || operation.textContent.includes('+') || operation.textContent.includes('/') || operation.textContent.includes('x'))){
             displayResult();
             }
 
             else{
-                firstInteger = Number(firstIntegerArray.join(''));
+                firstNumber = Number(firstNumberArray.join(''));
                 operation.textContent = '';
-                operation.appendChild(document.createTextNode(`${firstInteger}`));
+                operation.appendChild(document.createTextNode(`${firstNumber}`));
             }
     
 
@@ -119,7 +119,7 @@ buttons.forEach((button) => {
         }
 
         else if(equalPattern.test(button.textContent)){
-            // Converts the Array of numbers into a single integer. i.e. [1, 0, 9] becomes 109.
+            // Converts the Array of numbers into a single number. i.e. [1, 0, 9] becomes 109.
             displayResult()
         }
 
