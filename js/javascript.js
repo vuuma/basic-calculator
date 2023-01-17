@@ -43,7 +43,7 @@ function displayResult(){
     let secondInteger = Number(secondIntegerArray.join(''));
     
     result.textContent = '';
-    let calculateResult = operate(operator, parseInt(firstInteger), parseInt(secondInteger));
+    let calculateResult = operate(operator, parseFloat(firstInteger), parseFloat(secondInteger));
     result.appendChild(document.createTextNode(`${calculateResult}`));
     clearValues()
     operation.textContent = '';
