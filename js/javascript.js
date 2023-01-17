@@ -54,11 +54,16 @@ function displayResult(){
 function clearValues(){
     firstIntegerArray.length = 0;
     secondIntegerArray.length = 0;
+    firstInteger = null;
+    secondInteger = null;
 }
 
-function clearResults(){
+function clearAllData(){
     operation.textContent = '';
     result.textContent = '';
+    firstIntegerArray.length = 0;
+    secondIntegerArray.length = 0;
+    operator = '';
 }
 
 const buttons = document.querySelectorAll('button');
@@ -120,7 +125,7 @@ buttons.forEach((button) => {
 
         // Clears the screen when the C (clear button) is pressed.
         else if(clearPattern.test(button.textContent)){
-            clearResults()
+            clearAllData()
             clearValues()
         }
     }
