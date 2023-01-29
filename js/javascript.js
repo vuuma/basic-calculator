@@ -107,7 +107,7 @@ buttons.forEach((button) => {
                 operation.appendChild(document.createTextNode(`${button.textContent}`));
             }
 
-            else if(!secondNumberArray.includes(".")){
+            else if(!secondNumberArray.includes(".") && firstNumberArray > 0){
                 secondNumberArray.push(button.textContent);
                 operation.appendChild(document.createTextNode(`${button.textContent}`));
             }
@@ -128,8 +128,6 @@ buttons.forEach((button) => {
                 operation.appendChild(document.createTextNode(`${button.textContent}`)); 
             }
         }
-
-        
 
         else if(equalPattern.test(button.textContent)){
             // Converts the Array of numbers into a single number. i.e. [1, 0, 9] becomes 109.
