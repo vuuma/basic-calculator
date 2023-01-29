@@ -85,6 +85,11 @@
     grid-row: 5;
 }
 
+.decimal{
+    grid-column: 3;
+    grid-row: 5;
+}
+
 .one{
     grid-column: 1;
     grid-row: 4

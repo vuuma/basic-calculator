@@ -79,6 +79,7 @@ const operatorPattern = /[+-/x]/;
 const backspacePattern = /</;
 const clearPattern = /C/;
 const equalPattern = /=/;
+const decimalPattern = /\./;
 let operator = '';
 let firstNumberArray = [];
 let secondNumberArray = [];
@@ -88,7 +89,6 @@ let displayFirstNumber;
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        //console.log(operation);
         if(numberPattern.test(button.textContent)){
             if(operation.textContent.includes('-') || operation.textContent.includes('+') || operation.textContent.includes('/') || operation.textContent.includes('x')){
                 operation.appendChild(document.createTextNode(`${button.textContent}`));
@@ -100,6 +100,18 @@ buttons.forEach((button) => {
                 operation.appendChild(document.createTextNode(`${button.textContent}`));
             }
         }   
+
+        else if(decimalPattern.test(button.textContent)){
+            if(!firstNumberArray.includes(".") && secondNumberArray.length == 0){
+                firstNumberArray.push(button.textContent);
+                operation.appendChild(document.createTextNode(`${button.textContent}`));
+            }
+
+            else if(!secondNumberArray.includes(".")){
+                secondNumberArray.push(button.textContent);
+                operation.appendChild(document.createTextNode(`${button.textContent}`));
+            }
+        }
 
         else if(operatorPattern.test(button.textContent)){
             if(firstNumberArray.length == 0 && button.textContent == '-'){
@@ -117,24 +129,22 @@ buttons.forEach((button) => {
             }
         }
 
+        
+
         else if(equalPattern.test(button.textContent)){
             // Converts the Array of numbers into a single number. i.e. [1, 0, 9] becomes 109.
             displayResult()
         }
 
         else if(backspacePattern.test(button.textContent)){
-    
             if(secondNumberArray.length > 0 && (operation.textContent.includes('-') || operation.textContent.includes('+') || operation.textContent.includes('/') || operation.textContent.includes('x'))){
                 secondNumberArray.pop();
-                operation.removeChild(operation.lastChild);    
-                console.log(secondNumberArray);    
+                operation.removeChild(operation.lastChild);     
             }
 
             else if(secondNumberArray.length == 0 && operator == ''){
                 
                 firstNumberArray.pop();
-                console.log(firstNumberArray);
-                console.log(displayFirstNumber);
                 operation.removeChild(operation.lastChild);  
             }
             
