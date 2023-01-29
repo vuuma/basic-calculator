@@ -13,7 +13,7 @@ A basic, barebones calculator built from scratch to practice my HTML, CSS, and J
 ## Future Plans
 - Round the result to two decimal places so it doesn't overflow the screen.
 - Make the website more mobile friendly so it conforms to the size of mobile phones and tablets.
-- The calculator keys can be activated by keyboard keys.
+- The calculator buton can be activated by the keyboard.
 
 ## Screenshots
 ![Arithmetic operation](/img/operation.PNG?raw=true)
